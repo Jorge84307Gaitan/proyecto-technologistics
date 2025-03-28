@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const db = require("../config/db");
 
-// Obtener todos los detalles de envío
 router.get("/", (req, res) => {
     db.query("SELECT * FROM detalleenvio", (err, results) => {
         if (err) {
@@ -14,7 +13,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// Obtener un detalle de envío por ID
+
 router.get("/:id", (req, res) => {
     const { id } = req.params;
     db.query("SELECT * FROM detalleenvio WHERE Id_envio = ?", [id], (err, results) => {
@@ -27,7 +26,6 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// Crear un nuevo detalle de envío
 router.post("/", (req, res) => {
     const { Id_pedido, Id_ruta, Fecha_envio, Estado_envio } = req.body;
     db.query(
@@ -44,7 +42,6 @@ router.post("/", (req, res) => {
     );
 });
 
-// Actualizar un detalle de envío
 router.put("/:id", (req, res) => {
     const { id } = req.params;
     const { Id_pedido, Id_ruta, Fecha_envio, Estado_envio } = req.body;
@@ -62,7 +59,6 @@ router.put("/:id", (req, res) => {
     );
 });
 
-// Eliminar un detalle de envío
 router.delete("/:id", (req, res) => {
     const { id } = req.params;
     db.query("DELETE FROM detalleenvio WHERE Id_envio = ?", [id], (err, result) => {

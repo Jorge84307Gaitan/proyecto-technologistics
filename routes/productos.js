@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const db = require("../config/db");
 
-// Obtener todos los productos
 router.get("/", (req, res) => {
     db.query("SELECT * FROM productos", (err, results) => {
         if (err) {
@@ -14,7 +13,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// Agregar un nuevo producto
+
 router.post("/", (req, res) => {
     const { nombre_producto, descripcion, precio } = req.body;
     db.query("INSERT INTO productos (nombre_producto, descripcion, precio) VALUES (?, ?, ?)", 
@@ -29,7 +28,6 @@ router.post("/", (req, res) => {
     });
 });
 
-// Actualizar un producto por ID
 router.put("/:id", (req, res) => {
     const { id } = req.params;
     const { nombre_producto, descripcion, precio } = req.body;
@@ -45,7 +43,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// Eliminar un producto por ID
+
 router.delete("/:id", (req, res) => {
     const { id } = req.params;
     db.query("DELETE FROM productos WHERE id_producto = ?", [id], (err, result) => {
@@ -58,5 +56,5 @@ router.delete("/:id", (req, res) => {
     });
 });
 
-// Exportar el router
+
 module.exports = router;

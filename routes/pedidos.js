@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../config/db");
 
-// Obtener pedidos
+
 router.get("/", (req, res) => {
     db.query("SELECT * FROM pedidos", (err, results) => {
         if (err) {
@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// Obtener un pedido por numerod e ID
+
 router.get("/:id", (req, res) => {
     const { id } = req.params;
     db.query("SELECT * FROM pedidos WHERE Id_pedido = ?", [id], (err, results) => {
@@ -27,7 +27,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// Crear un nuevo pedido
+
 router.post("/", (req, res) => {
     const { Id_cliente, Fecha_pedido, Estado_pedido } = req.body;
     db.query("INSERT INTO pedidos (Id_cliente, Fecha_pedido, Estado_pedido) VALUES (?, ?, ?)", 
@@ -42,7 +42,7 @@ router.post("/", (req, res) => {
     });
 });
 
-// Actualizar un pedido
+
 router.put("/:id", (req, res) => {
     const { id } = req.params;
     const { Id_cliente, Fecha_pedido, Estado_pedido } = req.body;
@@ -58,7 +58,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// Eliminar un pedido
+
 router.delete("/:id", (req, res) => {
     const { id } = req.params;
     db.query("DELETE FROM pedidos WHERE Id_pedido = ?", [id], (err, result) => {

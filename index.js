@@ -14,6 +14,9 @@ app.use("/pedidos", require("./routes/pedidos"));
 app.use("/detallepedido", require("./routes/detallepedido"));
 app.use("/detalleenvio", require("./routes/detalleenvio"));
 app.use("/rutas", require("./routes/ruta")); 
+app.use("/seguimientopedido", require("./routes/seguimientopedido"));
+app.use("/transportista", require("./routes/transportista"));
+
 
 
 const PORT = process.env.PORT || 3000;

@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const db = require("../config/db");
 
-// Obtener todos los detalles de los pedidos
 router.get("/", (req, res) => {
     db.query("SELECT * FROM detallepedido", (err, results) => {
         if (err) {
@@ -14,7 +13,6 @@ router.get("/", (req, res) => {
     });
 });
 
-// Obtener un detalle de pedido por ID
 router.get("/:id", (req, res) => {
     const { id } = req.params;
     db.query("SELECT * FROM detallepedido WHERE Id_detallepedido = ?", [id], (err, results) => {
@@ -27,11 +25,10 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// Crear un nuevo detalle de pedido
+
 router.post("/", (req, res) => {
     const { Id_pedido, Id_producto, Cantidad, Precio_unitario } = req.body;
 
-    // Verificar que los valores sean válidos
     if (!Id_pedido || !Id_producto || !Cantidad || !Precio_unitario) {
         return res.status(400).json({ error: "Todos los campos son necesarios" });
     }
@@ -50,7 +47,6 @@ router.post("/", (req, res) => {
 });
 
 
-// Actualizar un detalle de pedido
 router.put("/:id", (req, res) => {
     const { id } = req.params;
     const { Id_pedido, Id_producto, Cantidad, Precio_unitario } = req.body;
@@ -66,7 +62,6 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// Eliminar un detalle de pedido
 router.delete("/:id", (req, res) => {
     const { id } = req.params;
     db.query("DELETE FROM detallepedido WHERE Id_detallepedido = ?", [id], (err, result) => {

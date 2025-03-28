@@ -13,10 +13,10 @@ const connection = mysql.createConnection({
 
 connection.connect((err) => {
     if (err) {
-        console.error(" Error conectando a MySQL:", err);
+        console.error(" Error no se puede conectar a MySQL:", err);
         return;
     }
-    console.log(" Conectado a MySQL correctamente");
+    console.log(" Se pudo conectar a MySQL de manera correcta ");
 });
 
 module.exports = connection;

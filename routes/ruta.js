@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../config/db");
 
-// Obtener todas las rutas
+
 router.get("/", (req, res) => {
     db.query("SELECT * FROM ruta", (err, results) => {
         if (err) {
@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// Obtener una ruta por ID
+
 router.get("/:id", (req, res) => {
     const { id } = req.params;
     db.query("SELECT * FROM ruta WHERE Id_ruta = ?", [id], (err, results) => {
@@ -27,7 +27,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// Crear una nueva ruta
+
 router.post('/', (req, res) => {
     const { Origen, Destino, Distancia, Tiempo_estimado } = req.body;
   
@@ -41,7 +41,7 @@ router.post('/', (req, res) => {
     });
 });
 
-// Actualizar la ruta seleccionada
+
 router.put("/:id", (req, res) => {
     const { id } = req.params;
     const { Origen, Destino, Distancia, Tiempo_estimado } = req.body;
@@ -57,7 +57,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// Eliminar la ruta seleccionada
+
 router.delete("/:id", (req, res) => {
     const { id } = req.params;
     db.query("DELETE FROM ruta WHERE Id_ruta = ?", [id], (err, result) => {
