@@ -5,9 +5,9 @@ const db = require("./config/db");
 
 const app = express();
 
-
 app.use(cors());
 app.use(express.json()); 
+
 app.use("/clientes", require("./routes/clientes"));
 app.use("/productos", require("./routes/productos"));
 app.use("/pedidos", require("./routes/pedidos"));
@@ -19,7 +19,9 @@ app.use("/transportista", require("./routes/transportista"));
 
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
+
+
